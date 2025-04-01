@@ -3,17 +3,22 @@ package backend.service;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.WriteResult;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.google.cloud.firestore.WriteResult;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.util.Map;
 
 @Service
 public class PatientService {
     private final Firestore firestore;
+    private final ObjectMapper objectMapper;
 
     @Autowired
     public PatientService(Firestore firestore) {
         this.firestore = firestore;
+        this.objectMapper = new ObjectMapper();
     }
 
     public String getPatientData(String id) {
@@ -34,11 +39,16 @@ public class PatientService {
 
     public String addPatientData(String patientData) {
         try {
-            // Add a new patient document
-            ApiFuture<WriteResult> future = firestore.collection("patients").document().set(patientData);
+            // Convert JSON string to Map
+            Map<String, Object> data = objectMapper.readValue(patientData, new TypeReference<Map<String, Object>>() {});
+            
+            // Create a new document with auto-generated ID
+            ApiFuture<WriteResult> future = firestore.collection("patients")
+                .document()
+                .set(data);
+            
             WriteResult result = future.get();
-
-            return "Patient added with id: " + result.getUpdateTime();
+            return "Patient added successfully with update time: " + result.getUpdateTime();
         } catch (Exception e) {
             return "Error adding patient data: " + e.getMessage();
         }
