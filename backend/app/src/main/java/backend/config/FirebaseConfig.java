@@ -17,7 +17,6 @@ public class FirebaseConfig {
 
             FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.getApplicationDefault())
-                .setDatabaseUrl("https://visby-db.firebaseio.com")
                 .setProjectId("visby-training")
                 .build();
             FirebaseApp.initializeApp(options);
