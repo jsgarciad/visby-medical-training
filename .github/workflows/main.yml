@@ -24,9 +24,11 @@ jobs:
           java-version: '11'
 
       - name: Build with Gradle
+        working-directory: backend
         run: ./gradlew build
 
       - name: Run tests
+        working-directory: backend
         run: ./gradlew test
 
   deploy:

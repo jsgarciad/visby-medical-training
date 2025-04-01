@@ -3,6 +3,10 @@
 .terraform/*
 .vscode/*
 visby-training-firebase-adminsdk-fbsvc-ba5c5a8cf7.json
+serviceaAccountTerraform.json
+terraform.tfstate
+terraform.tfstate.backup
+.vscode/*
 # Spring Boot
 target/
 !.mvn/wrapper/maven-wrapper.jar
