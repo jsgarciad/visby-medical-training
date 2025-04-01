@@ -18,5 +18,4 @@ env_variables:
   SPRING_PROFILES_ACTIVE: "prod"
 
 inbound_services:
-  - warmup
-  
+  - warmup 
