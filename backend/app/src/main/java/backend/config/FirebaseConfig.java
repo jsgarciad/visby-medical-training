@@ -16,12 +16,12 @@ public class FirebaseConfig {
         try {
             FileInputStream serviceAccount = new FileInputStream("/Users/joan.garcia/Documents/visby-medical-training/visby-training-firebase-adminsdk-fbsvc-ba5c5a8cf7.json");
 
-        FirebaseOptions options = FirebaseOptions.builder()
-            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-            .setDatabaseUrl("https://visby-training.firebaseio.com")
-            .setProjectId("visby-training")
-            .build();
-        FirebaseApp.initializeApp(options);
+            FirebaseOptions options = FirebaseOptions.builder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setDatabaseUrl("https://visby-db.firebaseio.com")
+                .setProjectId("visby-training")
+                .build();
+            FirebaseApp.initializeApp(options);
         } catch (IOException e) {
             e.printStackTrace();
         }
