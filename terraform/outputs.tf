@@ -1,5 +1,5 @@
  output "app_engine_application_url" {
-  value = "https://${google_app_engine_application.app.default_host}"
+  value = "https://${google_app_engine_application.app.default_hostname}"
 }
 
 output "app_engine_application_name" {
