@@ -3,16 +3,17 @@ package backend.service;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.google.cloud.firestore.WriteResult;
 
 @Service
 public class PatientService {
     private final Firestore firestore;
 
-    public PatientService() {
-        this.firestore = FirestoreClient.getFirestore();
+    @Autowired
+    public PatientService(Firestore firestore) {
+        this.firestore = firestore;
     }
 
     public String getPatientData(String id) {
