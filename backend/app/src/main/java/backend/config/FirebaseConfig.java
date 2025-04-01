@@ -14,10 +14,9 @@ public class FirebaseConfig {
     @PostConstruct
     public void initialize() {
         try {
-            FileInputStream serviceAccount = new FileInputStream("/Users/joan.garcia/Documents/visby-medical-training/visby-training-firebase-adminsdk-fbsvc-ba5c5a8cf7.json");
 
             FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setCredentials(GoogleCredentials.getApplicationDefault())
                 .setDatabaseUrl("https://visby-db.firebaseio.com")
                 .setProjectId("visby-training")
                 .build();
